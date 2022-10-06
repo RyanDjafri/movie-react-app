@@ -15,7 +15,7 @@ function App() {
     fetch(url)
       .then((res) => res.json())
       .then((data) => setMovies(data.results));
-  }, []);
+  }, [term]);
   const handleSearch = (e) => {
     e.preventDefault();
     fetch(urlSearch + term)
@@ -35,9 +35,10 @@ function App() {
           </div>
         </div>
         <div className="movies">
-          {movies.map((movie) => {
-            <MovieCard {...movie} />;
-          })}
+          {movies &&
+            movies.map((movie) => {
+              return <MovieCard {...movie} />;
+            })}
         </div>
       </div>
     </div>
